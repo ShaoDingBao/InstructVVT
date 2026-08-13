@@ -7,7 +7,7 @@
       name="description"
       content="InstructVVT is an instruction-driven, reference-guided video virtual try-on framework that requires no auxiliary spatial priors at inference time."
     />
-    <meta name="theme-color" content="#0a0d0c" />
+    <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="InstructVVT" />
     <meta
@@ -92,11 +92,6 @@
           </div>
         </div>
 
-        <div class="hero-facts" aria-label="Key facts">
-          <div><strong>0</strong><span>spatial priors<br />at inference</span></div>
-          <div><strong>3</strong><span>natural inputs<br />only</span></div>
-          <div><strong>79.4%</strong><span>user preference<br />on TripVVT-Bench</span></div>
-        </div>
       </header>
 
       <section class="demo-section shell" aria-labelledby="demo-title">
@@ -190,6 +185,26 @@
             </article>
           </div>
         </div>
+      </section>
+
+      <section class="abstract-section shell" aria-labelledby="abstract-title">
+        <div>
+          <p class="section-kicker">Abstract</p>
+          <h2 id="abstract-title">A simpler interface for a highly constrained edit.</h2>
+        </div>
+        <p>
+          Video virtual try-on requires precise garment replacement while preserving the
+          source video’s spatial structure and temporal dynamics. Existing methods often
+          rely on handcrafted spatial priors that can fail in unconstrained videos and
+          discard useful context. InstructVVT instead operates on a source video, a
+          reference garment, and a natural-language instruction. An MLLM produces semantic
+          edit tokens for target disambiguation and structural preservation, while a
+          lightweight garment pathway injects fine-grained visual details. A tailored
+          try-on reward and DiffusionNFT post-training further align the generator with
+          human preferences. Across ViViD-S and TripVVT-Bench, the model improves garment
+          fidelity, source preservation, and temporal consistency without inference-time
+          spatial priors.
+        </p>
       </section>
 
       <section class="method-section" id="method" aria-labelledby="method-title">
@@ -326,26 +341,6 @@
           </button>
           <img src="static/images/ablation.webp" width="1231" height="948" alt="Qualitative ablation of InstructVVT components" loading="lazy" />
         </figure>
-      </section>
-
-      <section class="abstract-section shell" aria-labelledby="abstract-title">
-        <div>
-          <p class="section-kicker">Abstract</p>
-          <h2 id="abstract-title">A simpler interface for a highly constrained edit.</h2>
-        </div>
-        <p>
-          Video virtual try-on requires precise garment replacement while preserving the
-          source video’s spatial structure and temporal dynamics. Existing methods often
-          rely on handcrafted spatial priors that can fail in unconstrained videos and
-          discard useful context. InstructVVT instead operates on a source video, a
-          reference garment, and a natural-language instruction. An MLLM produces semantic
-          edit tokens for target disambiguation and structural preservation, while a
-          lightweight garment pathway injects fine-grained visual details. A tailored
-          try-on reward and DiffusionNFT post-training further align the generator with
-          human preferences. Across ViViD-S and TripVVT-Bench, the model improves garment
-          fidelity, source preservation, and temporal consistency without inference-time
-          spatial priors.
-        </p>
       </section>
 
       <section class="citation-section" id="citation" aria-labelledby="citation-title">
