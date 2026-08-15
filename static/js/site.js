@@ -54,7 +54,7 @@ document.querySelectorAll(".demo-tab").forEach((tab) => {
   });
 });
 
-const videos = document.querySelectorAll("video");
+const videos = document.querySelectorAll("video[autoplay]");
 if (reducedMotion) {
   videos.forEach((video) => video.pause());
 } else if ("IntersectionObserver" in window) {
@@ -89,6 +89,108 @@ document.querySelectorAll(".result-tab").forEach((tab) => {
     resultFigure.setAttribute("aria-labelledby", tab.id);
   });
 });
+
+const supplementaryData = {
+  tripvvt: {
+    label: "TripVVT-Bench",
+    description: "Additional in-the-wild comparison with the try-on instruction shown in the video.",
+    files: Array.from(
+      { length: 9 },
+      (_, index) => `static/media/supplementary/tripvvt-s/tripvvt-s-${index + 1}.mp4`,
+    ),
+  },
+  vivid: {
+    label: "ViViD-S",
+    description: "Additional ViViD-S result showing garment transfer and source-video preservation over time.",
+    files: Array.from(
+      { length: 6 },
+      (_, index) => `static/media/supplementary/vivid-s/vivid-s-${index + 1}.mp4`,
+    ),
+  },
+  ablation: {
+    label: "Ablation",
+    description: "Side-by-side comparison of the full model and variants with individual conditioning components removed.",
+    files: ["static/media/supplementary/ablation/ablation-1.mp4"],
+    poster: "static/media/supplementary/ablation/ablation-1_preview.png",
+  },
+  failure: {
+    label: "Failure case",
+    description: "A text-reference conflict case illustrating imperfect reference-garment fidelity.",
+    files: ["static/media/supplementary/failure/failure-1.mp4"],
+    poster: "static/media/supplementary/failure/failure-1_preview.png",
+  },
+};
+
+const supplementaryVideo = document.querySelector("#supplementary-video");
+const supplementaryDataset = document.querySelector("#supplementary-dataset");
+const supplementaryTitleLabel = document.querySelector("#supplementary-title-label");
+const supplementaryCount = document.querySelector("#supplementary-count");
+const supplementaryDescription = document.querySelector("#supplementary-description");
+const supplementarySamples = document.querySelector("#supplementary-samples");
+let activeSupplementaryCategory = "tripvvt";
+
+function selectSupplementaryVideo(index) {
+  const category = supplementaryData[activeSupplementaryCategory];
+  const source = category.files[index];
+  if (!source) return;
+
+  supplementaryVideo.pause();
+  supplementaryVideo.src = source;
+  if (category.poster) {
+    supplementaryVideo.poster = category.poster;
+  } else {
+    supplementaryVideo.removeAttribute("poster");
+  }
+  supplementaryVideo.load();
+
+  const itemLabel = category.files.length === 1 ? category.label : `Supplementary result ${index + 1}`;
+  supplementaryDataset.textContent = category.label;
+  supplementaryTitleLabel.textContent = itemLabel;
+  supplementaryCount.textContent = `${String(index + 1).padStart(2, "0")} / ${String(category.files.length).padStart(2, "0")}`;
+  supplementaryDescription.textContent = category.description;
+  supplementaryVideo.setAttribute("aria-label", `${category.label} ${itemLabel}`);
+
+  supplementarySamples.querySelectorAll("button").forEach((button, buttonIndex) => {
+    const isActive = buttonIndex === index;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function renderSupplementarySamples() {
+  const category = supplementaryData[activeSupplementaryCategory];
+  supplementarySamples.replaceChildren();
+
+  category.files.forEach((_, index) => {
+    const button = document.createElement("button");
+    button.className = "supplementary-sample";
+    button.type = "button";
+    button.textContent = String(index + 1).padStart(2, "0");
+    button.setAttribute("aria-label", `Show ${category.label} video ${index + 1}`);
+    button.setAttribute("aria-pressed", String(index === 0));
+    if (index === 0) button.classList.add("is-active");
+    button.addEventListener("click", () => selectSupplementaryVideo(index));
+    supplementarySamples.append(button);
+  });
+}
+
+document.querySelectorAll(".supplementary-category").forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const category = tab.dataset.suppCategory;
+    if (!supplementaryData[category] || category === activeSupplementaryCategory) return;
+
+    activeSupplementaryCategory = category;
+    document.querySelectorAll(".supplementary-category").forEach((button) => {
+      const isActive = button === tab;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-selected", String(isActive));
+    });
+    renderSupplementarySamples();
+    selectSupplementaryVideo(0);
+  });
+});
+
+renderSupplementarySamples();
 
 const lightbox = document.querySelector("#figure-lightbox");
 const lightboxImage = lightbox.querySelector("img");
