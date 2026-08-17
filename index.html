@@ -31,6 +31,7 @@
       <div class="nav-links">
         <a href="#method">Method</a>
         <a href="#results">Results</a>
+        <a href="#supplementary">Videos</a>
         <a href="#citation">Citation</a>
       </div>
     </nav>
@@ -80,6 +81,13 @@
             <a class="button button-primary" href="static/pdfs/InstructVVT.pdf">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6zM14 2v5h5M9 13h6M9 17h6M9 9h2" /></svg>
               Paper
+            </a>
+            <a
+              class="button"
+              href="#supplementary"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l12 8-12 8z" /></svg>
+              Videos
             </a>
             <span class="button button-muted" aria-disabled="true" title="arXiv identifier pending">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" /></svg>
@@ -341,6 +349,57 @@
           </button>
           <img src="static/images/ablation.webp" width="1231" height="948" alt="Qualitative ablation of InstructVVT components" loading="lazy" />
         </figure>
+      </section>
+
+      <section class="supplementary-section" id="supplementary" aria-labelledby="supplementary-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Supplementary videos</p>
+              <h2 id="supplementary-title">Inspect the results in motion.</h2>
+            </div>
+            <p>
+              Browse additional comparisons on TripVVT-Bench and ViViD-S, together
+              with the qualitative ablation and failure-case analysis.
+            </p>
+          </div>
+
+          <div class="supplementary-viewer">
+            <div class="supplementary-categories" role="tablist" aria-label="Supplementary video category">
+              <button class="supplementary-category is-active" type="button" role="tab" aria-selected="true" data-supp-category="tripvvt">
+                <span>TripVVT-Bench</span><small>9 videos</small>
+              </button>
+              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="vivid">
+                <span>ViViD-S</span><small>6 videos</small>
+              </button>
+              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="ablation">
+                <span>Ablation</span><small>1 video</small>
+              </button>
+              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="failure">
+                <span>Failure case</span><small>1 video</small>
+              </button>
+            </div>
+
+            <div class="supplementary-stage" role="tabpanel">
+              <div class="supplementary-stage-head">
+                <div>
+                  <span id="supplementary-dataset">TripVVT-Bench</span>
+                  <strong id="supplementary-title-label">Supplementary result 1</strong>
+                </div>
+                <span id="supplementary-count" aria-live="polite">01 / 09</span>
+              </div>
+              <div class="supplementary-video-frame">
+                <video id="supplementary-video" controls loop playsinline preload="metadata" aria-label="TripVVT-Bench supplementary result 1">
+                  <source src="static/media/supplementary/tripvvt-s/tripvvt-s-1.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <p id="supplementary-description">
+                Additional in-the-wild comparison with the try-on instruction shown in the video.
+              </p>
+              <div class="supplementary-samples" id="supplementary-samples" aria-label="Select supplementary sample"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="citation-section" id="citation" aria-labelledby="citation-title">
