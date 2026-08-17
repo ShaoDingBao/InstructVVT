@@ -94,6 +94,8 @@ const supplementaryData = {
   tripvvt: {
     label: "TripVVT-Bench",
     description: "Additional in-the-wild comparison with the try-on instruction shown in the video.",
+    aspectRatio: "800 / 868",
+    maxWidth: "720px",
     files: Array.from(
       { length: 9 },
       (_, index) => `static/media/supplementary/tripvvt-s/tripvvt-s-${index + 1}.mp4`,
@@ -102,6 +104,8 @@ const supplementaryData = {
   vivid: {
     label: "ViViD-S",
     description: "Additional ViViD-S result showing garment transfer and source-video preservation over time.",
+    aspectRatio: "1248 / 1006",
+    maxWidth: "900px",
     files: Array.from(
       { length: 6 },
       (_, index) => `static/media/supplementary/vivid-s/vivid-s-${index + 1}.mp4`,
@@ -110,18 +114,23 @@ const supplementaryData = {
   ablation: {
     label: "Ablation",
     description: "Side-by-side comparison of the full model and variants with individual conditioning components removed.",
+    aspectRatio: "1410 / 450",
+    maxWidth: "1080px",
     files: ["static/media/supplementary/ablation/ablation-1.mp4"],
     poster: "static/media/supplementary/ablation/ablation-1_preview.png",
   },
   failure: {
     label: "Failure case",
     description: "A text-reference conflict case illustrating imperfect reference-garment fidelity.",
+    aspectRatio: "898 / 520",
+    maxWidth: "920px",
     files: ["static/media/supplementary/failure/failure-1.mp4"],
     poster: "static/media/supplementary/failure/failure-1_preview.png",
   },
 };
 
 const supplementaryVideo = document.querySelector("#supplementary-video");
+const supplementaryVideoFrame = document.querySelector(".supplementary-video-frame");
 const supplementaryDataset = document.querySelector("#supplementary-dataset");
 const supplementaryTitleLabel = document.querySelector("#supplementary-title-label");
 const supplementaryCount = document.querySelector("#supplementary-count");
@@ -149,6 +158,8 @@ function selectSupplementaryVideo(index) {
   supplementaryCount.textContent = `${String(index + 1).padStart(2, "0")} / ${String(category.files.length).padStart(2, "0")}`;
   supplementaryDescription.textContent = category.description;
   supplementaryVideo.setAttribute("aria-label", `${category.label} ${itemLabel}`);
+  supplementaryVideoFrame.style.setProperty("--supplementary-ratio", category.aspectRatio);
+  supplementaryVideoFrame.style.setProperty("--supplementary-max-width", category.maxWidth);
 
   supplementarySamples.querySelectorAll("button").forEach((button, buttonIndex) => {
     const isActive = buttonIndex === index;

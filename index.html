@@ -102,6 +102,33 @@
 
       </header>
 
+      <section class="featured-result shell" aria-labelledby="featured-result-title">
+        <div class="featured-result-copy">
+          <p class="section-kicker">Featured result · 06</p>
+          <h2 id="featured-result-title">Change the garment.<br /> Leave the street untouched.</h2>
+          <p>
+            In a crowded outdoor scene, the instruction identifies the woman in pink
+            and replaces only her lower-body clothing. Other people, camera motion,
+            and the surrounding street remain consistent throughout the edit.
+          </p>
+          <div class="featured-result-tags" aria-label="Result attributes">
+            <span>Instruction-guided</span>
+            <span>Multi-person scene</span>
+            <span>No spatial priors</span>
+          </div>
+          <a class="featured-result-link" href="#supplementary">Explore all supplementary results <span>↓</span></a>
+        </div>
+        <figure class="featured-result-media">
+          <div class="featured-result-label">
+            <span>TripVVT-Bench</span>
+            <span>Source · Reference · Ours</span>
+          </div>
+          <video muted loop autoplay playsinline preload="metadata" aria-label="Featured TripVVT-Bench supplementary result 6">
+            <source src="static/media/supplementary/tripvvt-s/tripvvt-s-6.mp4" type="video/mp4" />
+          </video>
+        </figure>
+      </section>
+
       <section class="demo-section shell" aria-labelledby="demo-title">
         <div class="section-heading demo-heading">
           <div>
@@ -364,35 +391,37 @@
             </p>
           </div>
 
-          <div class="supplementary-viewer">
-            <div class="supplementary-categories" role="tablist" aria-label="Supplementary video category">
-              <button class="supplementary-category is-active" type="button" role="tab" aria-selected="true" data-supp-category="tripvvt">
-                <span>TripVVT-Bench</span><small>9 videos</small>
-              </button>
-              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="vivid">
-                <span>ViViD-S</span><small>6 videos</small>
-              </button>
-              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="ablation">
-                <span>Ablation</span><small>1 video</small>
-              </button>
-              <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="failure">
-                <span>Failure case</span><small>1 video</small>
-              </button>
-            </div>
+          <div class="supplementary-categories" role="tablist" aria-label="Supplementary video category">
+            <button class="supplementary-category is-active" type="button" role="tab" aria-selected="true" data-supp-category="tripvvt">
+              <span>TripVVT-Bench</span><small>09</small>
+            </button>
+            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="vivid">
+              <span>ViViD-S</span><small>06</small>
+            </button>
+            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="ablation">
+              <span>Ablation</span><small>01</small>
+            </button>
+            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="failure">
+              <span>Failure case</span><small>01</small>
+            </button>
+          </div>
 
-            <div class="supplementary-stage" role="tabpanel">
-              <div class="supplementary-stage-head">
-                <div>
-                  <span id="supplementary-dataset">TripVVT-Bench</span>
-                  <strong id="supplementary-title-label">Supplementary result 1</strong>
-                </div>
-                <span id="supplementary-count" aria-live="polite">01 / 09</span>
+          <div class="supplementary-stage" role="tabpanel">
+            <div class="supplementary-stage-head">
+              <div>
+                <span id="supplementary-dataset">TripVVT-Bench</span>
+                <strong id="supplementary-title-label">Supplementary result 1</strong>
               </div>
+              <span id="supplementary-count" aria-live="polite">01 / 09</span>
+            </div>
+            <div class="supplementary-video-wrap">
               <div class="supplementary-video-frame">
                 <video id="supplementary-video" controls loop playsinline preload="metadata" aria-label="TripVVT-Bench supplementary result 1">
                   <source src="static/media/supplementary/tripvvt-s/tripvvt-s-1.mp4" type="video/mp4" />
                 </video>
               </div>
+            </div>
+            <div class="supplementary-meta">
               <p id="supplementary-description">
                 Additional in-the-wild comparison with the try-on instruction shown in the video.
               </p>
