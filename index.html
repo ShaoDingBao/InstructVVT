@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="InstructVVT is an instruction-driven, reference-guided video virtual try-on framework that requires no auxiliary spatial priors at inference time."
+      content="InstructVVT: instruction-driven video virtual try-on from a source video, a reference garment, and natural language. No auxiliary spatial priors at inference time."
     />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f8f9fc" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="InstructVVT" />
+    <meta
+      property="og:title"
+      content="InstructVVT — Video try-on, by instruction."
+    />
     <meta
       property="og:description"
-      content="Instruction-driven video virtual try-on without auxiliary spatial priors."
+      content="Instruction-Driven Video Virtual Try-On without Auxiliary Spatial Priors."
     />
-    <meta property="og:image" content="static/images/teaser.webp" />
+    <meta
+      property="og:image"
+      content="https://shaodingbao.github.io/InstructVVT/static/images/teaser.webp"
+    />
+    <link rel="canonical" href="https://shaodingbao.github.io/InstructVVT/" />
     <title>InstructVVT — Instruction-Driven Video Virtual Try-On</title>
     <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="static/css/index.css" />
@@ -22,424 +29,660 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="InstructVVT home">
-        <span class="brand-mark">I</span>
-        <span>InstructVVT</span>
-      </a>
-      <div class="nav-links">
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#supplementary">Videos</a>
-        <a href="#citation">Citation</a>
+      <a class="brand" href="#top" aria-label="InstructVVT home"
+        ><svg viewBox="0 0 30 30" aria-hidden="true">
+          <path d="M4 5h6v20H4zM14 5h5l-2 10zM21 5h5l-6 20h-5z" /></svg
+        >InstructVVT</a
+      ><button
+        id="menu-toggle"
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav-links"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="site-nav-links">
+        <a href="#method">Method</a><a href="#results">Results</a
+        ><a href="#supplementary">Gallery</a><a href="#citation">Citation</a
+        ><a
+          class="nav-paper"
+          href="static/pdfs/InstructVVT.pdf"
+          target="_blank"
+          rel="noopener"
+          >Read the paper <span aria-hidden="true">↗</span></a
+        >
       </div>
     </nav>
-
     <main id="main">
-      <header class="hero shell" id="top">
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span> Public preprint · 2026</p>
-          <h1>Instruct<span>VVT</span></h1>
-          <p class="hero-subtitle">
-            Instruction-Driven Video Virtual Try-On<br />
-            without Auxiliary Spatial Priors
+      <section class="hero" id="top" aria-labelledby="page-title">
+        <header class="hero-intro shell">
+          <p class="eyebrow">
+            <span class="status-dot"></span>A new interface for video virtual
+            try-on <span class="eyebrow-year">/ 2026</span>
           </p>
-
-          <div class="authors" aria-label="Paper authors">
-            <span class="author primary">Dingbao Shao<sup>*</sup></span>
-            <span class="author primary">Song Wu<sup>*</sup></span>
-            <span class="author">Xinyu Chen</span>
-            <span class="author">Qian Wang</span>
-            <span class="author">Jiahang Li</span>
-            <span class="author">Kuai Jiang</span>
-            <span class="author">Jiang Lin</span>
-            <span class="author">Yuhang Liu</span>
-            <span class="author">Ziyu Chen</span>
-            <span class="author">Duo Li</span>
-            <span class="author">Jiaxin Hu</span>
-            <span class="author">Shengrong Gu</span>
-            <span class="author">Ziheng Tang</span>
-            <span class="author">Rongrong Liu</span>
-            <span class="author">Yanlun Peng</span>
-            <span class="author">Liang Li</span>
-            <span class="author">Junlan Feng</span>
-            <span class="author">Lujia Jin</span>
-            <span class="author">Ting Zhang</span>
-            <span class="author">Jian Yang</span>
-            <span class="author primary">Zili Yi<sup>†</sup></span>
-          </div>
-          <p class="author-note"><sup>*</sup> Equal contribution. <sup>†</sup> Corresponding author.</p>
-
-          <p class="hero-lede">
-            Give the model a source video, a reference garment, and a natural-language
-            instruction. It identifies what to edit, transfers garment details, and
-            preserves motion and scene content—without masks, poses, or parsing maps.
+          <h1 id="page-title">
+            Instruct<span>VVT</span><span class="title-period">.</span>
+          </h1>
+          <p class="paper-title">
+            Instruction-Driven Video Virtual Try-On<br />without Auxiliary
+            Spatial Priors
           </p>
-
-          <div class="resource-links" aria-label="Paper resources">
-            <a class="button button-primary" href="static/pdfs/InstructVVT.pdf">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6zM14 2v5h5M9 13h6M9 17h6M9 9h2" /></svg>
-              Paper
-            </a>
+          <div class="resource-links" aria-label="Research resources">
             <a
-              class="button"
-              href="#supplementary"
+              class="button button-primary"
+              href="static/pdfs/InstructVVT.pdf"
+              target="_blank"
+              rel="noopener"
+              ><svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M5 2h7l4 4v12H5zM12 2v5h4M8 10h5M8 13h5" /></svg
+              >Read paper <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="https://arxiv.org/abs/2608.14070"
+              target="_blank"
+              rel="noopener"
+              >arXiv <span aria-hidden="true">↗</span></a
+            ><a class="text-link" href="#supplementary"
+              >Video gallery <span aria-hidden="true">↓</span></a
+            ><span class="release-note">Code coming soon</span>
+          </div>
+        </header>
+        <div
+          class="interactive-demo shell"
+          aria-label="Explore video try-on examples"
+        >
+          <div class="demo-toolbar">
+            <div
+              class="demo-switcher"
+              role="group"
+              aria-label="Select a try-on example"
             >
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l12 8-12 8z" /></svg>
-              Videos
-            </a>
-            <a class="button" href="https://arxiv.org/abs/2608.14070">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" /></svg>
-              arXiv
-            </a>
-            <span class="button button-muted" aria-disabled="true" title="Code release pending">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" /></svg>
-              Code · soon
-            </span>
-          </div>
-        </div>
-
-      </header>
-
-      <section class="featured-result shell" aria-labelledby="featured-result-title">
-        <div class="featured-result-copy">
-          <p class="section-kicker">Featured result · 06</p>
-          <h2 id="featured-result-title">Change the garment.<br /> Leave the street untouched.</h2>
-          <p>
-            In a crowded outdoor scene, the instruction identifies the woman in pink
-            and replaces only her lower-body clothing. Other people, camera motion,
-            and the surrounding street remain consistent throughout the edit.
-          </p>
-          <div class="featured-result-tags" aria-label="Result attributes">
-            <span>Instruction-guided</span>
-            <span>Multi-person scene</span>
-            <span>No spatial priors</span>
-          </div>
-          <a class="featured-result-link" href="#supplementary">Explore all supplementary results <span>↓</span></a>
-        </div>
-        <figure class="featured-result-media">
-          <div class="featured-result-label">
-            <span>TripVVT-Bench</span>
-            <span>Source · Reference · Ours</span>
-          </div>
-          <video muted loop autoplay playsinline preload="metadata" aria-label="Featured TripVVT-Bench supplementary result 6">
-            <source src="static/media/supplementary/tripvvt-s/tripvvt-s-6.mp4" type="video/mp4" />
-          </video>
-        </figure>
-      </section>
-
-      <section class="demo-section shell" aria-labelledby="demo-title">
-        <div class="section-heading demo-heading">
-          <div>
-            <p class="section-kicker">The interface</p>
-            <h2 id="demo-title">Say what should change.<br />Keep everything else.</h2>
-          </div>
-          <p>
-            One instruction resolves the edit target and scope. Select an example to
-            inspect the same three-input workflow across different garments and motions.
-          </p>
-        </div>
-
-        <div class="demo-switcher" role="group" aria-label="Select a demo">
-          <button class="demo-tab is-active" type="button" data-demo="00000013" aria-pressed="true">Upper body</button>
-          <button class="demo-tab" type="button" data-demo="00000004" aria-pressed="false">Full dress</button>
-          <button class="demo-tab" type="button" data-demo="00000042" aria-pressed="false">Crowded scene</button>
-          <button class="demo-tab" type="button" data-demo="00000095" aria-pressed="false">Lower body</button>
-        </div>
-
-        <div class="flow-card" data-active-demo="00000013">
-          <div class="flow-item video-item">
-            <div class="card-label"><span>01</span> Source video</div>
-            <video id="demo-source" muted loop autoplay playsinline preload="metadata" aria-label="Source video">
-              <source src="static/media/00000013/source.mp4" type="video/mp4" />
-            </video>
-          </div>
-
-          <div class="flow-operator" aria-hidden="true">+</div>
-
-          <div class="flow-item garment-item">
-            <div class="card-label"><span>02</span> Reference</div>
-            <img id="demo-garment" src="static/media/00000013/garment.webp" width="400" height="720" alt="Reference black short-sleeved T-shirt" />
-          </div>
-
-          <div class="flow-operator" aria-hidden="true">+</div>
-
-          <div class="flow-item instruction-item">
-            <div class="card-label"><span>03</span> Instruction</div>
-            <blockquote id="demo-instruction">“Replace the woman’s upper-body clothing with the reference garment.”</blockquote>
-            <div class="not-required">
-              <span>no mask</span><span>no pose</span><span>no parsing</span>
+              <button
+                class="demo-tab is-active"
+                type="button"
+                data-demo="00000013"
+                aria-pressed="true"
+              >
+                Upper body</button
+              ><button
+                class="demo-tab"
+                type="button"
+                data-demo="00000004"
+                aria-pressed="false"
+              >
+                Full dress</button
+              ><button
+                class="demo-tab"
+                type="button"
+                data-demo="00000042"
+                aria-pressed="false"
+              >
+                Multi-person</button
+              ><button
+                class="demo-tab"
+                type="button"
+                data-demo="00000095"
+                aria-pressed="false"
+              >
+                Lower body
+              </button>
+            </div>
+            <div class="demo-controls">
+              <button
+                id="demo-replay"
+                class="icon-button"
+                type="button"
+                aria-label="Replay both videos"
+              >
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M4 8a6 6 0 1 1 0 5M4 3v5h5" />
+                </svg></button
+              ><button
+                id="demo-play"
+                class="play-button"
+                type="button"
+                aria-label="Pause both videos"
+              >
+                <span class="play-icon" aria-hidden="true">Ⅱ</span
+                ><span data-play-label>Pause</span>
+              </button>
             </div>
           </div>
-
-          <div class="flow-arrow" aria-hidden="true">
-            <span></span>
-            <svg viewBox="0 0 28 16"><path d="M1 8h24M18 1l7 7-7 7" /></svg>
-          </div>
-
-          <div class="flow-item video-item output-item">
-            <div class="card-label"><span>04</span> InstructVVT output</div>
-            <video id="demo-output" muted loop autoplay playsinline preload="metadata" aria-label="InstructVVT output video">
-              <source src="static/media/00000013/output.mp4" type="video/mp4" />
-            </video>
-            <div class="output-badge"><i></i> Edited</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="overview-section shell" id="overview" aria-labelledby="overview-title">
-        <figure class="figure-frame figure-frame-light">
-          <button class="zoom-button" type="button" data-zoom="static/images/teaser.webp" aria-label="Open teaser figure at full size">
-            <span>Open figure</span>
-          </button>
-          <img src="static/images/teaser.webp" width="1818" height="822" alt="InstructVVT teaser showing multi-person target selection and comparison with prior spatial-prior pipelines" loading="lazy" />
-        </figure>
-        <div class="overview-copy">
-          <p class="section-kicker">Why InstructVVT</p>
-          <h2 id="overview-title">Control without a preprocessing stack.</h2>
-          <p class="lead-copy">
-            Existing video try-on systems often turn rich visual context into a chain of
-            handcrafted controls. When a detector fails, the editor inherits that error.
-            InstructVVT recovers editing control from the original inputs instead.
-          </p>
-          <div class="contrast-grid">
-            <article>
-              <span class="contrast-index">Prior interface</span>
-              <h3>Many brittle intermediates</h3>
-              <div class="token-list token-list-old">
-                <span>mask</span><span>pose</span><span>parsing</span><span>contour</span>
-              </div>
-            </article>
-            <article class="contrast-new">
-              <span class="contrast-index">Our interface</span>
-              <h3>Three natural inputs</h3>
-              <div class="token-list">
-                <span>video</span><span>garment</span><span>instruction</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="abstract-section shell" aria-labelledby="abstract-title">
-        <div>
-          <p class="section-kicker">Abstract</p>
-          <h2 id="abstract-title">A simpler interface for a highly constrained edit.</h2>
-        </div>
-        <p>
-          Video virtual try-on requires precise garment replacement while preserving the
-          source video’s spatial structure and temporal dynamics. Existing methods often
-          rely on handcrafted spatial priors that can fail in unconstrained videos and
-          discard useful context. InstructVVT instead operates on a source video, a
-          reference garment, and a natural-language instruction. An MLLM produces semantic
-          edit tokens for target disambiguation and structural preservation, while a
-          lightweight garment pathway injects fine-grained visual details. A tailored
-          try-on reward and DiffusionNFT post-training further align the generator with
-          human preferences. Across ViViD-S and TripVVT-Bench, the model improves garment
-          fidelity, source preservation, and temporal consistency without inference-time
-          spatial priors.
-        </p>
-      </section>
-
-      <section class="method-section" id="method" aria-labelledby="method-title">
-        <div class="shell">
-          <div class="section-heading">
-            <div>
-              <p class="section-kicker">The method</p>
-              <h2 id="method-title">Semantic intent meets visual detail.</h2>
+          <div class="demo-stage">
+            <div class="video-col">
+              <p class="media-label"><span>01</span> Source video</p>
+              <video
+                id="demo-source"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="static/images/posters/00000013-source.webp"
+                aria-label="Original video of a woman with an umbrella"
+              >
+                <source
+                  src="static/media/00000013/source.mp4"
+                  type="video/mp4"
+                />
+              </video>
             </div>
-            <p>
-              Three complementary conditioning paths tell the DiT what to edit, what the
-              garment should look like, and what in the source video must remain stable.
-            </p>
+            <div class="reference-col">
+              <div class="reference-image">
+                <p class="media-label"><span>02</span> Reference garment</p>
+                <img
+                  id="demo-garment"
+                  src="static/media/00000013/garment.webp"
+                  width="400"
+                  height="720"
+                  alt="Reference black short-sleeved T-shirt"
+                />
+              </div>
+              <div class="instruction">
+                <p class="media-label"><span>03</span> Your instruction</p>
+                <blockquote id="demo-instruction">
+                  “Replace the woman’s upper-body clothing with the reference
+                  garment.”
+                </blockquote>
+                <svg
+                  class="instruction-arrow"
+                  viewBox="0 0 78 14"
+                  aria-hidden="true"
+                >
+                  <path d="M0 7h75M69 1l6 6-6 6" />
+                </svg>
+              </div>
+            </div>
+            <div class="video-col result-col">
+              <p class="media-label">
+                <span class="result-dot"></span> InstructVVT result
+              </p>
+              <video
+                id="demo-output"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="static/images/posters/00000013-output.webp"
+                aria-label="InstructVVT result with the reference black T-shirt"
+              >
+                <source
+                  src="static/media/00000013/output.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
           </div>
-
-          <div class="method-steps" aria-label="InstructVVT conditioning pathways">
-            <article>
-              <span class="method-number">01</span>
-              <h3>MLLM edit tokens</h3>
-              <p>Jointly interpret source frames, garment, and instruction to resolve the target and editing scope.</p>
-            </article>
-            <article>
-              <span class="method-number">02</span>
-              <h3>Garment tokens</h3>
-              <p>Inject fine-grained appearance cues—texture, pattern, shape, and visible design details—into the generator.</p>
-            </article>
-            <article>
-              <span class="method-number">03</span>
-              <h3>Source-video cues</h3>
-              <p>Anchor human motion, camera behavior, scene layout, and content outside the edited garment region.</p>
-            </article>
+          <div class="demo-footnote">
+            <p>One video. One garment. One instruction.</p>
+            <span>No masks, poses, or parsing maps at inference.</span>
           </div>
-
-          <figure class="figure-frame architecture-frame">
-            <button class="zoom-button" type="button" data-zoom="static/images/architecture.webp" aria-label="Open architecture figure at full size">
-              <span>Open figure</span>
-            </button>
-            <img src="static/images/architecture.webp" width="2099" height="1320" alt="Architecture of InstructVVT supervised finetuning and reward-aligned post-training" loading="lazy" />
-            <figcaption>
-              Stage 1 learns instruction-resolved try-on with dual-level garment conditioning.
-              Stage 2 aligns the generator with try-on-specific preferences using an MLLM reward and DiffusionNFT.
-            </figcaption>
-          </figure>
+          <p
+            id="demo-status"
+            class="media-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+        <div class="authors-band shell">
+          <details class="authors-details">
+            <summary>
+              <span
+                >Dingbao Shao<sup>*</sup>, Song Wu<sup>*</sup>
+                <span class="muted">and collaborators</span></span
+              ><span class="author-toggle"
+                >Full author list <span aria-hidden="true">+</span></span
+              >
+            </summary>
+            <div class="author-list">
+              <div class="authors" aria-label="Paper authors">
+                <span class="author primary">Dingbao Shao<sup>*</sup></span>
+                <span class="author primary">Song Wu<sup>*</sup></span>
+                <span class="author">Xinyu Chen</span>
+                <span class="author">Qian Wang</span>
+                <span class="author">Jiahang Li</span>
+                <span class="author">Kuai Jiang</span>
+                <span class="author">Jiang Lin</span>
+                <span class="author">Yuhang Liu</span>
+                <span class="author">Ziyu Chen</span>
+                <span class="author">Duo Li</span>
+                <span class="author">Jiaxin Hu</span>
+                <span class="author">Shengrong Gu</span>
+                <span class="author">Ziheng Tang</span>
+                <span class="author">Rongrong Liu</span>
+                <span class="author">Yanlun Peng</span>
+                <span class="author">Liang Li</span>
+                <span class="author">Junlan Feng</span>
+                <span class="author">Lujia Jin</span>
+                <span class="author">Ting Zhang</span>
+                <span class="author">Jian Yang</span>
+                <span class="author primary">Zili Yi<sup>†</sup></span>
+              </div>
+              <p class="author-note">
+                <sup>*</sup> Equal contribution &nbsp;
+                <sup>†</sup> Corresponding author
+              </p>
+            </div>
+          </details>
         </div>
       </section>
-
-      <section class="results-section shell" id="results" aria-labelledby="results-title">
+      <section
+        class="overview-section section shell"
+        id="overview"
+        aria-labelledby="overview-title"
+      >
         <div class="section-heading">
           <div>
-            <p class="section-kicker">Experiments</p>
-            <h2 id="results-title">Strong fidelity, preservation, and preference.</h2>
+            <p class="eyebrow section-index">01 / The idea</p>
+            <h2 id="overview-title">
+              The right edit.<br /><span class="muted">With fewer inputs.</span>
+            </h2>
           </div>
-          <p>
-            InstructVVT is evaluated on ViViD-S and TripVVT-Bench against open-source
-            video try-on systems and general instruction-guided video editors.
-          </p>
-        </div>
-
-        <div class="metric-grid">
-          <article class="metric-featured">
-            <span>Human evaluation</span>
-            <strong>79.4<small>%</small></strong>
-            <p>user preference on TripVVT-Bench</p>
-          </article>
-          <article>
-            <span>Garment fidelity</span>
-            <strong>0.9528</strong>
-            <p>CLIP-I on TripVVT-Bench <i>↑</i></p>
-          </article>
-          <article>
-            <span>Source preservation</span>
-            <strong>0.8742</strong>
-            <p>SSIM on TripVVT-Bench <i>↑</i></p>
-          </article>
-          <article>
-            <span>Perceptual distance</span>
-            <strong>0.0615</strong>
-            <p>LPIPS on TripVVT-Bench <i>↓</i></p>
-          </article>
-        </div>
-
-        <div class="result-viewer">
-          <div class="result-viewer-head">
-            <div class="result-tabs" role="tablist" aria-label="Qualitative result dataset">
-              <button id="tripvvt-tab" class="result-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="result-figure" data-result-image="static/images/tripvvt-results.webp" data-result-alt="Qualitative comparison on TripVVT-Bench">TripVVT-Bench</button>
-              <button id="vivid-tab" class="result-tab" type="button" role="tab" aria-selected="false" aria-controls="result-figure" data-result-image="static/images/vivid-results.webp" data-result-alt="Qualitative comparison on ViViD-S">ViViD-S</button>
-            </div>
-            <button class="text-button" type="button" id="result-zoom">Open figure ↗</button>
-          </div>
-          <figure id="result-figure" role="tabpanel" aria-labelledby="tripvvt-tab">
-            <img id="result-image" src="static/images/tripvvt-results.webp" width="2600" height="1554" alt="Qualitative comparison on TripVVT-Bench" loading="lazy" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="alignment-section" aria-labelledby="alignment-title">
-        <div class="shell alignment-grid">
-          <div class="alignment-copy">
-            <p class="section-kicker">Reward alignment</p>
-            <h2 id="alignment-title">Optimize what makes a try-on actually work.</h2>
+          <div class="section-description">
             <p>
-              Reconstruction alone cannot express whether the right person was edited,
-              garment details survived, or the background stayed untouched. Our
-              try-on-specific reward evaluates those qualities jointly and guides
-              DiffusionNFT post-training.
+              Change the instructed person’s clothing while preserving the
+              video’s structure and motion.
             </p>
-            <dl class="agreement-list">
-              <div><dt>65.5%</dt><dd>pairwise agreement with human judgment</dd></div>
-              <div><dt>0.368</dt><dd>Spearman rank correlation</dd></div>
-              <div><dt>0.310</dt><dd>Kendall rank correlation</dd></div>
-            </dl>
+            <p>
+              InstructVVT learns editing control directly from the source video,
+              reference garment, and language. No handcrafted spatial priors are
+              required at inference time.
+            </p>
           </div>
-          <figure class="reward-card">
-            <img src="static/images/reward-score.webp" width="1600" height="912" alt="Reward score increasing over post-training steps" loading="lazy" />
-            <figcaption>Reward score during post-training.</figcaption>
-          </figure>
         </div>
-      </section>
-
-      <section class="analysis-section shell" aria-labelledby="analysis-title">
-        <div class="section-heading compact-heading">
-          <div>
-            <p class="section-kicker">Analysis</p>
-            <h2 id="analysis-title">Every conditioning path has a job.</h2>
+        <div class="principles">
+          <article>
+            <span class="principle-number">01</span>
+            <h3>Choose who to edit</h3>
+            <p>
+              Language resolves the person and the clothing region—even in
+              multi-person scenes.
+            </p>
+          </article>
+          <article>
+            <span class="principle-number">02</span>
+            <h3>Bring the garment details</h3>
+            <p>
+              Reference conditioning carries appearance cues into the generated
+              video.
+            </p>
+          </article>
+          <article>
+            <span class="principle-number">03</span>
+            <h3>Preserve the source</h3>
+            <p>
+              Source-video conditioning anchors motion, scene structure, and
+              unedited content.
+            </p>
+          </article>
+        </div>
+        <details class="research-detail">
+          <summary>Read the abstract <span aria-hidden="true">+</span></summary>
+          <div class="abstract-copy">
+            <p>
+              Video virtual try-on requires precise garment replacement while
+              preserving the source video’s spatial structure and temporal
+              dynamics. Existing methods often rely on handcrafted spatial
+              priors that can fail in unconstrained videos and discard useful
+              context. InstructVVT instead operates on a source video, a
+              reference garment, and a natural-language instruction. An MLLM
+              produces semantic edit tokens for target disambiguation and
+              structural preservation, while a lightweight garment pathway
+              injects fine-grained visual details. A tailored try-on reward and
+              DiffusionNFT post-training further align the generator with human
+              preferences. Across ViViD-S and TripVVT-Bench, the model improves
+              garment fidelity, source preservation, and temporal consistency
+              without inference-time spatial priors.
+            </p>
+            <button
+              class="figure-button"
+              type="button"
+              data-zoom="static/images/teaser.webp"
+            >
+              <img
+                src="static/images/teaser.webp"
+                width="1818"
+                height="822"
+                alt="InstructVVT input interface compared with auxiliary spatial-prior pipelines"
+                loading="lazy"
+              /><span class="figure-expand">View full figure ↗</span>
+            </button>
           </div>
-          <p>
-            Removing garment-aware semantics, reward alignment, or source conditioning
-            produces a distinct and interpretable failure mode.
-          </p>
-        </div>
-        <figure class="figure-frame figure-frame-light">
-          <button class="zoom-button" type="button" data-zoom="static/images/ablation.webp" aria-label="Open ablation figure at full size">
-            <span>Open figure</span>
-          </button>
-          <img src="static/images/ablation.webp" width="1231" height="948" alt="Qualitative ablation of InstructVVT components" loading="lazy" />
-        </figure>
+        </details>
       </section>
-
-      <section class="supplementary-section" id="supplementary" aria-labelledby="supplementary-title">
+      <section
+        class="method-section section"
+        id="method"
+        aria-labelledby="method-title"
+      >
         <div class="shell">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Supplementary videos</p>
-              <h2 id="supplementary-title">Inspect the results in motion.</h2>
+              <p class="eyebrow section-index">02 / The method</p>
+              <h2 id="method-title">
+                Semantic intent.<br /><span class="muted">Visual detail.</span>
+              </h2>
             </div>
-            <p>
-              Browse additional comparisons on TripVVT-Bench and ViViD-S, together
-              with the qualitative ablation and failure-case analysis.
+            <p class="section-description">
+              A Diffusion Transformer combines instruction-resolved semantics,
+              fine-grained garment appearance, and source-video cues.
             </p>
           </div>
-
-          <div class="supplementary-categories" role="tablist" aria-label="Supplementary video category">
-            <button class="supplementary-category is-active" type="button" role="tab" aria-selected="true" data-supp-category="tripvvt">
-              <span>TripVVT-Bench</span><small>09</small>
+          <figure class="method-figure">
+            <button
+              class="figure-button"
+              type="button"
+              data-zoom="static/images/architecture.webp"
+            >
+              <img
+                src="static/images/architecture.webp"
+                width="2099"
+                height="1320"
+                alt="InstructVVT architecture: semantic edit tokens, garment conditioning, source conditioning and preference-aligned training"
+                loading="lazy"
+              /><span class="figure-expand">Explore the architecture ↗</span>
             </button>
-            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="vivid">
-              <span>ViViD-S</span><small>06</small>
-            </button>
-            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="ablation">
-              <span>Ablation</span><small>01</small>
-            </button>
-            <button class="supplementary-category" type="button" role="tab" aria-selected="false" data-supp-category="failure">
-              <span>Failure case</span><small>01</small>
+            <figcaption>
+              Supervised fine-tuning learns the edit. Preference-aligned
+              post-training refines it.
+            </figcaption>
+          </figure>
+          <div class="method-notes">
+            <div>
+              <span class="eyebrow">Stage 01</span>
+              <h3>Learn instruction-driven try-on</h3>
+              <p>
+                An MLLM infers semantic edit tokens. A lightweight visual
+                pathway supplies garment details, while source conditioning
+                preserves the scene’s structure.
+              </p>
+            </div>
+            <div>
+              <span class="eyebrow">Stage 02</span>
+              <h3>Align with human preferences</h3>
+              <p>
+                A try-on-specific reward guides DiffusionNFT post-training
+                toward garment fidelity, structural preservation, and temporal
+                consistency.
+              </p>
+            </div>
+          </div>
+          <details class="research-detail">
+            <summary>
+              Reward alignment &amp; ablation studies
+              <span aria-hidden="true">+</span>
+            </summary>
+            <div class="analysis-content">
+              <div>
+                <h3>A reward that reflects try-on quality</h3>
+                <p>
+                  The reward achieves 65.5% pairwise agreement with human
+                  judgment, with Spearman correlation of 0.368 and Kendall
+                  correlation of 0.310.
+                </p>
+                <button
+                  class="figure-button"
+                  type="button"
+                  data-zoom="static/images/reward-score.webp"
+                >
+                  <img
+                    src="static/images/reward-score.webp"
+                    width="1600"
+                    height="912"
+                    alt="Try-on reward scores during post-training"
+                    loading="lazy"
+                  /><span class="figure-expand">Open figure ↗</span>
+                </button>
+              </div>
+              <div>
+                <h3>Each conditioning path matters</h3>
+                <p>
+                  Ablations examine garment-aware semantics, source
+                  conditioning, and reward alignment.
+                </p>
+                <button
+                  class="figure-button"
+                  type="button"
+                  data-zoom="static/images/ablation.webp"
+                >
+                  <img
+                    src="static/images/ablation.webp"
+                    width="1231"
+                    height="948"
+                    alt="Qualitative ablation of InstructVVT components"
+                    loading="lazy"
+                  /><span class="figure-expand">Open figure ↗</span>
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+      <section
+        class="results-section section shell"
+        id="results"
+        aria-labelledby="results-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow section-index">03 / The evidence</p>
+            <h2 id="results-title">
+              A closer fit.<br /><span class="muted"
+                >A more consistent video.</span
+              >
+            </h2>
+          </div>
+          <p class="section-description">
+            Evaluated on ViViD-S and TripVVT-Bench against open-source video
+            try-on methods and general instruction-guided video editors.
+          </p>
+        </div>
+        <div class="metrics" aria-label="Results on TripVVT-Bench">
+          <article class="primary-metric">
+            <strong>79.4<span>%</span></strong>
+            <h3>First-place votes</h3>
+            <p>TripVVT-Bench · 4-method study</p>
+          </article>
+          <article>
+            <strong>0.9528</strong>
+            <h3>Garment fidelity</h3>
+            <p>CLIP-I ↑ · TripVVT-Bench</p>
+          </article>
+          <article>
+            <strong>0.8742</strong>
+            <h3>Reconstruction fidelity</h3>
+            <p>SSIM ↑ · TripVVT-Bench</p>
+          </article>
+          <article>
+            <strong>0.0615</strong>
+            <h3>Perceptual distance</h3>
+            <p>LPIPS ↓ · TripVVT-Bench</p>
+          </article>
+        </div>
+        <p class="metric-context">
+          Human study: 50 examples, 20 participants, and 1,000 votes across
+          InstructVVT, MagicTryOn, UniVideo, and Kling 1.6. Values above are
+          reported on TripVVT-Bench.
+        </p>
+        <div class="result-viewer">
+          <div class="viewer-toolbar">
+            <div
+              class="result-tabs"
+              role="group"
+              aria-label="Choose comparison dataset"
+            >
+              <button
+                class="result-tab is-active"
+                type="button"
+                aria-pressed="true"
+                data-result-image="static/images/tripvvt-results.webp"
+                data-result-label="TripVVT-Bench"
+                data-result-alt="Qualitative comparison on TripVVT-Bench"
+              >
+                TripVVT-Bench</button
+              ><button
+                class="result-tab"
+                type="button"
+                aria-pressed="false"
+                data-result-image="static/images/vivid-results.webp"
+                data-result-label="ViViD-S"
+                data-result-alt="Qualitative comparison on ViViD-S"
+              >
+                ViViD-S
+              </button>
+            </div>
+            <span class="viewer-hint">Select the figure to enlarge ↗</span>
+          </div>
+          <button
+            class="figure-button result-figure"
+            type="button"
+            data-zoom="#result-image"
+            aria-label="Enlarge qualitative comparison"
+          >
+            <img
+              id="result-image"
+              src="static/images/tripvvt-results.webp"
+              width="2600"
+              height="1554"
+              alt="Qualitative comparison on TripVVT-Bench"
+              loading="lazy"
+            />
+          </button>
+          <p class="figure-caption">
+            <span id="result-dataset-label">TripVVT-Bench</span> · See the paper
+            for complete evaluation protocols and results.
+          </p>
+        </div>
+      </section>
+      <section
+        class="gallery-section section"
+        id="supplementary"
+        aria-labelledby="supplementary-title"
+      >
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow section-index">04 / In motion</p>
+              <h2 id="supplementary-title">
+                See the details.<br /><span class="muted"
+                  >Across every frame.</span
+                >
+              </h2>
+            </div>
+            <p class="section-description">
+              Explore additional comparisons, ablations, and a failure case.
+              Every video is an original supplementary result from the project.
+            </p>
+          </div>
+          <div
+            class="category-tabs"
+            role="group"
+            aria-label="Choose supplementary category"
+          >
+            <button
+              class="category-tab is-active"
+              type="button"
+              data-category="tripvvt"
+              aria-pressed="true"
+            >
+              TripVVT-Bench <span>09</span></button
+            ><button
+              class="category-tab"
+              type="button"
+              data-category="vivid"
+              aria-pressed="false"
+            >
+              ViViD-S <span>06</span></button
+            ><button
+              class="category-tab"
+              type="button"
+              data-category="ablation"
+              aria-pressed="false"
+            >
+              Ablation <span>01</span></button
+            ><button
+              class="category-tab"
+              type="button"
+              data-category="failure"
+              aria-pressed="false"
+            >
+              Failure case <span>01</span>
             </button>
           </div>
-
-          <div class="supplementary-stage" role="tabpanel">
-            <div class="supplementary-stage-head">
-              <div>
-                <span id="supplementary-dataset">TripVVT-Bench</span>
-                <strong id="supplementary-title-label">Supplementary result 1</strong>
+          <div class="gallery-layout">
+            <div class="gallery-screen">
+              <div class="gallery-screen-heading">
+                <span id="supplementary-dataset">TripVVT-Bench</span
+                ><span id="supplementary-count" aria-live="polite"
+                  >01 / 09</span
+                >
               </div>
-              <span id="supplementary-count" aria-live="polite">01 / 09</span>
+              <video
+                id="supplementary-video"
+                controls
+                loop
+                playsinline
+                preload="none"
+                poster="static/images/posters/tripvvt-1.webp"
+                aria-label="TripVVT-Bench supplementary result 1"
+              >
+                <source
+                  src="static/media/supplementary/tripvvt-s/tripvvt-s-1.mp4"
+                  type="video/mp4"
+                />
+              </video>
             </div>
-            <div class="supplementary-video-wrap">
-              <div class="supplementary-video-frame">
-                <video id="supplementary-video" controls loop playsinline preload="metadata" aria-label="TripVVT-Bench supplementary result 1">
-                  <source src="static/media/supplementary/tripvvt-s/tripvvt-s-1.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div class="supplementary-meta">
+            <aside class="gallery-browser">
+              <p class="eyebrow">Select an example</p>
               <p id="supplementary-description">
-                Additional in-the-wild comparison with the try-on instruction shown in the video.
+                In-the-wild comparisons with the instruction shown below each
+                video.
               </p>
-              <div class="supplementary-samples" id="supplementary-samples" aria-label="Select supplementary sample"></div>
-            </div>
+              <div
+                id="supplementary-samples"
+                class="sample-grid"
+                aria-label="Supplementary examples"
+              ></div>
+              <p class="gallery-note">
+                Original research videos.<br />Use the player controls to
+                inspect the motion.
+              </p>
+            </aside>
           </div>
         </div>
       </section>
-
-      <section class="citation-section" id="citation" aria-labelledby="citation-title">
-        <div class="shell citation-grid">
+      <section
+        class="citation-section section shell"
+        id="citation"
+        aria-labelledby="citation-title"
+      >
+        <div class="citation-grid">
           <div>
-            <p class="section-kicker">Citation</p>
-            <h2 id="citation-title">Cite InstructVVT</h2>
-            <p class="citation-note">arXiv:2608.14070 [cs.CV]</p>
+            <p class="eyebrow section-index">05 / Build on this work</p>
+            <h2 id="citation-title">
+              Cite InstructVVT<span class="blue">.</span>
+            </h2>
+            <p>
+              If you find this research useful, please consider citing our
+              paper.
+            </p>
+            <a
+              class="text-link"
+              href="https://arxiv.org/abs/2608.14070"
+              target="_blank"
+              rel="noopener"
+              >arXiv:2608.14070 ↗</a
+            >
           </div>
           <div class="citation-box">
-            <button class="copy-button" type="button" data-copy-target="bibtex">Copy BibTeX</button>
+            <div class="citation-toolbar">
+              <span>BibTeX</span
+              ><button id="copy-bibtex" type="button">
+                Copy citation <span aria-hidden="true">⧉</span>
+              </button>
+            </div>
             <pre id="bibtex"><code>@misc{shao2026instructvvt,
   title   = {InstructVVT: Instruction-Driven Video Virtual Try-On
              without Auxiliary Spatial Priors},
@@ -455,20 +698,28 @@
   primaryClass  = {cs.CV},
   url     = {https://arxiv.org/abs/2608.14070}
 }</code></pre>
+            <p id="copy-status" role="status" aria-live="polite"></p>
           </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer shell">
-      <div class="brand footer-brand"><span class="brand-mark">I</span><span>InstructVVT</span></div>
-      <p>Instruction-driven video virtual try-on without auxiliary spatial priors.</p>
-      <a href="#top">Back to top ↑</a>
+      <a class="brand" href="#top">InstructVVT<span class="blue">.</span></a>
+      <p>Instruction-driven video virtual try-on · 2026</p>
+      <a class="text-link" href="#top">Back to top ↑</a>
     </footer>
-
-    <dialog class="lightbox" id="figure-lightbox" aria-label="Expanded paper figure">
-      <button class="lightbox-close" type="button" aria-label="Close expanded figure">Close ×</button>
-      <img src="" alt="Expanded paper figure" />
+    <dialog
+      id="lightbox"
+      class="lightbox"
+      aria-label="Expanded research figure"
+    >
+      <button
+        id="lightbox-close"
+        type="button"
+        aria-label="Close expanded figure"
+      >
+        Close <span aria-hidden="true">×</span></button
+      ><img id="lightbox-image" alt="" />
     </dialog>
   </body>
 </html>
