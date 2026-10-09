@@ -2,6 +2,8 @@
 
 **Instruction-Driven Video Virtual Try-On without Auxiliary Spatial Priors**
 
+**Accepted at NeurIPS 2026.**
+
 [Project Page](https://shaodingbao.github.io/InstructVVT/) · [Paper (PDF)](https://shaodingbao.github.io/InstructVVT/static/pdfs/InstructVVT.pdf) · [Supplementary Videos](https://shaodingbao.github.io/InstructVVT/#supplementary) · [arXiv](https://arxiv.org/abs/2608.14070) · Code coming soon
 
 InstructVVT is an instruction-driven and reference-guided video virtual try-on framework. Given a source video, a reference garment, and a natural-language instruction, it edits the instructed target while preserving identity, motion, scene structure, and temporal consistency. No masks, poses, parsing maps, DensePose conditions, or garment contours are required at inference time.
